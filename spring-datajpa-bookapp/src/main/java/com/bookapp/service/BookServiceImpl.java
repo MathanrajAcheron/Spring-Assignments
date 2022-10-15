@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bookapp.model.Book;
 import com.bookapp.repository.IBookRepository;
@@ -61,6 +62,48 @@ public class BookServiceImpl implements IBookService {
 	public List<Book> getByPrice(double price) {
 		// TODO Auto-generated method stub
 		return bookRepository.getByPriceLessThanEqual(price);
+	}
+
+	@Override
+	public List<Book> getByPriceAuth(double cost, String author) {
+		return bookRepository.getByPriceAuth(cost, author);
+	}
+
+	@Override
+	public List<Book> getByCatAndAuth(String category, String author) {
+		return bookRepository.getByCatAndAuth(category, author);
+	}
+
+	@Override
+	public List<Book> getBooksByAuth(String auth) {
+		return bookRepository.findBooksByAuth(auth);
+	}
+
+	@Override
+	public List<Book> getBookByCatPrice(String Cat,double price) {
+		return bookRepository.findBooksByCatPrice(Cat, price);
+	}
+
+	@Override
+	public int getTotalCount() {
+		return bookRepository.findTotalCount();
+	}
+
+	@Override
+	public List<Book> getMinPrice() {
+		return bookRepository.findMinPrice();
+	}
+
+	@Override
+	public List<Book> getBooksbyTitleAuth(String title, String author) {
+		return bookRepository.findBooksbyTitleAuthor(title, author);
+	}
+
+	
+	@Override
+	@Transactional
+	public void update(int bookId, double price) {
+		bookRepository.updateBook(bookId,price);
 	}
 
 }

@@ -10,8 +10,21 @@ void updateBook(Book book);
 void deleteBook(int bookId);
 Book getById(int bookId);
 List<Book> getAll();
-
+//derived queries
 List<Book> getByAuthor(String author);
 List<Book> getByCategory(String category);
 List<Book> getByPrice(double price);
+
+//custom query
+List<Book> getByPriceAuth(double cost,String author);
+List<Book> getByCatAndAuth(String category,String author);
+List<Book> getBooksByAuth(String auth);
+
+List<Book> getBookByCatPrice(String Cat,double price);
+int getTotalCount();
+List<Book> getMinPrice();
+List<Book> getBooksbyTitleAuth(String title, String author);
+
+
+void update(int bookId,double price);
 }
